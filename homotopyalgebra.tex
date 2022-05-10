@@ -1,0 +1,321 @@
+ \documentclass[book]{amsart}
+
+%-------Packages---------
+\usepackage{amssymb,amsfonts,amsmath,hyperref,charter,bbm}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs,tikz-cd,tikz}
+
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{temp}[thm]{Temporary Note}
+\newtheorem{clm}[thm]{Claim}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+
+\makeatletter
+\let\c@equation\c@thm
+\makeatother
+\numberwithin{equation}{section}
+
+
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\del}{\partial}
+\newcommand{\Ext}{\text{Ext}}
+
+\newcommand{\tensor}{\otimes} 
+\newcommand{\cpi}{\mathbb{C}P^\infty}
+\newcommand{\cpn}[1]{\mathbb{C}P^{#1}}
+
+\newcommand{\colim}{\operatorname{colim}}
+\newcommand{\img}{\operatorname{img}}
+\newcommand{\gr}{\operatorname{Gr}}
+
+\newcommand{\Tot}{\operatorname{Tot}}
+\newcommand{\Dec}{\operatorname{Dec}}
+
+
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\otw}{\text{Otherwise.}}
+\newcommand{\sma}{\wedge}
+
+\bibliographystyle{plain}
+
+\newcommand{\hfp}{\text{H}\mathbb{F}_p}
+\newcommand{\sphshv}{\text{Sh}_{\Sigma}}
+\newcommand{\Spfp}{\text{Sp}^\text{fp}}
+\newcommand{\MU}{\text{MU}}
+\newcommand{\syn}{\text{Syn}}
+\newcommand{\Syn}{\text{Syn}}
+
+\newcommand{\usyn}{\text{USyn}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cQ}{\mathcal{Q}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cAm}{\mathcal{A}_\text{m}}
+\newcommand{\cAcl}{\mathcal{A}_{\text{cl}}}
+
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cJ}{\mathcal{J}}
+
+\newcommand{\maps}{\text{maps}}
+
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cO}{\mathcal{O}}
+
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cPm}{\mathcal{P}_\text{m}}
+\newcommand{\cPcl}{\mathcal{P}_\text{cl}}
+
+\newcommand{\Sh}{\text{Sh}}
+\newcommand{\Psh}{\text{Psh}}
+\newcommand{\Fun}{\text{Fun}}
+\newcommand{\op}{^\text{op}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\Sp}{\text{Sp}}
+\newcommand{\Grp}{\text{Grp}_{\bE_\infty}}
+\newcommand{\Stab}{\text{Stab}}
+\newcommand{\Cdef}{\cC_{\operatorname{def}}}
+\newcommand{\CnFil}{\cC^{\operatorname{Fil}_n}}
+\newcommand{\SpnFil}{\Sp^{\operatorname{Fil}_n}}
+\newcommand{\CFil}{\cC^{\operatorname{Fil}}}
+\newcommand{\CmFil}{\cC^{\operatorname{Fil}_m}}
+\newcommand{\SpFil}{\Sp^{\operatorname{Fil}}}
+\newcommand{\CtFil}{\cC^{\operatorname{Fil}_2}}
+\newcommand{\SptFil}{\Sp^{\operatorname{Fil}_2}}
+
+\newcommand{\bZleq}{\bZ_{\leq}}
+\newcommand{\bZgeq}{\bZ_{\geq}}
+\newcommand{\bZleqn}{\bZ_{\leq}^{\times n}}
+\newcommand{\bZgeqn}{\bZ_{\geq}^{\times n}}
+
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\one}{\mathbbm{1}}
+
+\newcommand{\Mod}{\text{Mod}}
+\newcommand{\Gap}{\text{Gap}}
+
+\newcommand{\cb}{\text{cb}}
+\newcommand{\Adams}{\text{Adams}}
+\renewcommand{\Re}{\operatorname{Re}}
+\newcommand{\comp}{^\wedge}
+\newcommand{\lvl}{\text{lvl}}
+\newcommand{\Sqz}{\text{Sq}^0}
+\newcommand{\Sq}{\text{Sq}}
+\newcommand{\res}{\text{res}}
+\newcommand{\fp}{^{\text{fp}}}
+\newcommand{\Alg}{\text{Alg}}
+
+\newcommand{\wBP}{\mathit{wBP}}
+
+\newcommand*{\triple}[2][.1ex]{%
+  \mathrel{\vcenter{\offinterlineskip%
+  \hbox{$#2$}\vskip#1\hbox{$#2$}\vskip#1\hbox{$#2$}}}}
+  \newcommand*{\triplerightarrow}{\triple{\rightarrow}}
+\newcommand*{\tripleleftarrow}{\triple{\leftarrow}}
+\newcommand{\Comod}{\text{Comod}}
+\newcommand{\Comodcg}{\text{Comod}^\text{cg}}
+
+\newcommand{\Stable}{\text{Stable}}
+\newcommand{\Cat}{\text{Cat}}
+%--------Meta Data: Fill in your info------
+\title{An Introduction To Homotopy Coherent Algebra}
+
+\author{Max Johnson}
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+\section{Recollections from Higher Category Theory}
+
+In this section we review salient properties of the theory of $\infty$-categories as put forth in \cite{htt}, \cite{ha}, and other sources. Although we work in the framework of such monolithic works, they are not mean to be prerequisities in their entirety. In fact, all of the material in these notes already exists in such references. The goal here is to collect these results into a shorter work, with much generality omitted for the sake of describing a particular story.
+
+Instead, the reader is encouraged to be familiar with the theory of quasicategories at a potentially superficial level, returning to the details or constructions omitted here as necessary. In many ways, the purpose of this note is to introduce these concepts as model-independently as is currently feasible. At their conclusion our hope is that the reader will feel comfortable doing homotopy coherent algebra with minimal reference to the details of the quasicategorical model.
+
+That said, we \textit{will} assume familiarity with the basic definitions found in e.g. the first chapter of \cite{htt}, as well as the theory of stable $\infty$-categories put forth in the first chapter of \cite{ha}. Including the material would only be 
+
+\subsection{coCartesian Fibrations and the Grothendieck Construction}
+
+The goal of this section is to describe when we can view a functor $F:\cC\to \cD$ as having fibers $\cC_d$ sitting over objects $d\in \cD$ connected by functors induced by the morphisms in $\cD$. In particular, we want to know when the data of such a functor $F$ is equivalent to the data of a functor $\cD\to \Cat_\infty$. We will adopt the model-indepedent perspective developed in \cite{cocart}.
+
+
+Let $F:\cE\to\cC$ be a functor between $\infty$-categories.
+
+\begin{defn}
+\label{cocartmor}
+A morphism $\phi:e_1\to e_2$ in $\cC$ is said to be $F$-coCartesian if it induces a pullback square:
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXGNFX3tlXzIvfSJdLFsxLDAsIlxcY0Vfe2VfMS99Il0sWzEsMSwiXFxjQl97RihlXzEpL30iXSxbMCwxLCJcXGNCX3tGKGVfMikvfSJdLFswLDEsIlxccGhpXFxjaXJjIC0iXSxbMywyLCJmKFxccGhpKVxcY2lyYyAtIiwyXSxbMSwyLCJGIiwxXSxbMCwzLCJGIiwxXV0=
+\[\begin{tikzcd}
+	{\cE_{e_2/}} & {\cE_{e_1/}} \\
+	{\cB_{F(e_2)/}} & {\cB_{F(e_1)/}}
+	\arrow["{\phi\circ -}", from=1-1, to=1-2]
+	\arrow["{f(\phi)\circ -}"', from=2-1, to=2-2]
+	\arrow["F"{description}, from=1-2, to=2-2]
+	\arrow["F"{description}, from=1-1, to=2-1]
+\end{tikzcd}\]
+in $\Cat_\infty$. In this situation we say that $\phi$ is an F-coCartesian\footnote{Potentially omitting $F$ when obvious.} lift of $F(\phi)$ relative to $e_1$.
+\end{defn}
+
+\begin{rem} The square above will commute for any morphism in $\cE$. Then the condition of being coCartesian this tells us that maps $e_2\to x$ are determined by pairs $F(e_2)\to F(x)$ and maps $e_1\to X$ such that we get an equivalence 
+\[F(e_1)\to F(x)\simeq F(e_1)\xrightarrow{F(\phi)} F(e_2)\to F(x)\]
+\end{rem}
+\begin{defn}
+\label{cocartfib}
+A functor $F:\cC\to\cD$ is said to be a coCartesian fibration if, given a map $\psi: b_1\to b_2$ in $\cB$ and any lift $e_1$ of $b_1$, there is an $F$-coCartesian lift of $\psi$ relative to $e_1$.
+\end{defn}
+
+\begin{thm}
+There is a functor $\text{Gr}$ taking a coCartesian fibration $\cE\to\cB$ to a functor $\cB\to\Cat_\infty$ known as the \textit{Grothendieck Construction} that furnishes an equialence $\text{coCart}(\cB)\simeq \Fun(\cB,\Cat_\infty)$.
+\end{thm}
+
+It is shown in \cite{cocart} that this model independent approach is equivalent to the quasicategorical approach in \cite{ha} so that the result is \cite[todo]{ha}. Essentially, given a coCartesian fibration $F:\cE\to\cB$, the functor $\text{Gr}$ acts by sending $b\in \cB$ to it's fiber $F^{-1}(b)$ and maps $b_1\to b_2$ to covariant functors between the fibers; the axioms of a coCartesian fibrations assure this is all well-defined.
+
+\section{$\infty$-Operads}
+
+\subsection{An $\infty$-category of Finite Sets}
+
+Let $[n]$ be the set $\{1,2,...,n\}$. Consider the following $1$-category of finite pointed sets due to (Todo: who?). For objects, we take the pointed sets $[n]_*=[n]\cup \{*\}$, i.e., the sets $[n]$ with an appended basepoint. The morphisms are just functions of finite sets preserving the elements $*$. 
+
+\begin{defn}
+Let $\cF$ denote the $1$-category above and let $N(\cF)$ denote its $\infty$-categorical nerve.
+\end{defn}
+
+There are two particularly important classes of morphisms forming a factorization system in $\cF$ (and therefore in $N(\cF)$).
+
+\begin{defn}
+A morphism $\phi:[n]_*\to[m]_*$ is \textit{inert} if every $k\in [m]$ (excluding the basepoint) has exactly one preimage. A morphism is said to be \textit{active} if $\phi$ does not send any element of $[n]$ to the basepoint of $[m]_*$. 
+\end{defn}
+
+\begin{lem}
+Every morphism $\phi:[n]_*\to [m]_*$ in $\cF$ can be factored as $[n]_*\to [k]_* \to [m]_*$ where the first map is inert and the second is active.
+\end{lem}
+
+Inert morphisms $\phi:[n]_*\to[m]_*$ exhibit $[m]_*$ as being obtained from $[n]_*$ by sending extraneous elements to ${*}$. Active morphisms are exactly those that remain well-defined after removing basepoints.
+
+Among the inert morphisms, we will often have reason to refer to the morphisms $p^i:[n]_*\to [1]_*$, with $i\in [n]$, which send everything but $i$ to $*$. 
+
+The definition of an $\infty$-operad will involve functors valued in $N(\cF)$. As such is it prescient to extend the definitions of inert and active morphisms to all objects of $(\Cat_\infty)_{/N(\cF)}$.
+
+\begin{defn}
+Given $F:\cC\to N(\cF)$, a morphism $f:c_1\to c_2$ in $\cC$ is said to be inert (actve) if $F(f)$ is inert (active).
+\end{defn}
+
+
+The definition of an $\infty$-operad is closely related to that of a coCartesian fibration over $N(\cF)$ (Definition \ref{cocartfib}). Naturally we will want to consider the fibers over each $[n]_*$. For now, we will think of them only as collections of objects. If $F:\cE\to\cB$ is a functor and $c\in C$, then let $\cE_c$ denote the objects lying over $c$. Of course, though we omit it from the notation, this depends on the choice of $F$.
+
+\begin{defn}
+An $\infty$-operad is an $\infty$-category $\cO^{\otimes}$ equipped with a functor $\gamma:\cO^{\otimes}\to\cF$ satisfying:
+\begin{enumerate}
+    \item If $f:[n]_*\to [m]_*$ is inert, and if $x$ is a lift of $[n]_*$, then there is a coCartesian lift of $f$ relative to $x$ in $\cO^\otimes$.
+    \item If $x_1\in \cO^\otimes_{[n]_*}$ and $x_2\in \cO^\otimes_{[m]_*}$, let $\maps^f(x_1,x_2)$ denote the union of connected components lying over $f\in \maps([n]_*,[m]_*)$. Due to axiom $(1)$ we may choose coCartesian lifts $\phi^i:x_2\to y_i$ of $p^i$ relative to $x_2$. Then we require that
+    \[
+    \maps^f(x_1,x_2)\to \maps^{p^i\circ f}(x_1,y_i)
+    \]
+    is an equivalence.
+    \item The induced functors (Definition \ref{todo}) $p_!^i:\cO_{[n]_*}^\otimes \to \cO^\otimes_{[1]_*}$ induce an equivalence $\cO_{[n]_*}^\otimes\simeq (\cO^{\otimes}_{[1]_*})^{\times n}$
+\end{enumerate}
+\end{defn}
+
+\begin{rem}
+Our choice of axiom (3) is slightly nonstandard. Usually one assumes the apparently weaker condition that for every $n$ and every sequence of objects $x_1,...,x_n\in \cO^\otimes_{[1]_*}$, we have an object $x\in \cO^\otimes_{[n]_*}$ with coCarestian lifts $\bar p^i:x\to x_i$ of the $p_i$. Assuming $(1)$ and $(2)$, however, $(3)$ and $(3')$ are equivalent \cite[Remark]{todo}.
+\end{rem}
+
+\begin{notn}
+Given an $\infty$-operad $\cO^\otimes\to N(\cF)$, we will write $\cO$ for $\cO^\otimes_{[1]_*}$ and think of it as the underlying category of the operad.
+\end{notn}
+
+\begin{defn}
+A morphism of $\infty$-operads is a functor $\cO^\otimes \to \cQ^\otimes$ in $(\Cat_\infty)_{/N(\cF)}$  preserving inert morphisms.
+\end{defn}
+
+We may think of an $\infty$-operad morphism $F:\cO^\otimes \to \cQ^\otimes$ in two ways. The first is as an $\cO^\otimes$-algebra in $\cQ$. Because the notion is stable under composition, however, we may also think of $\cO^\otimes \to \cQ^\otimes$ as inducing a functor for turning $\cQ^\otimes$-algebras into $\cO^\otimes$-algebras.
+
+\begin{notn}
+\label{algnot}
+The full subcategory of $\Fun(\cO^\otimes,\cQ^\otimes)$ spanned by the $\infty$-operad morphisms will be denoted $\Alg_{\cO}(\cQ)$.
+\end{notn}
+
+We will not refer to the $1$-categorical notion of operad in this document. As a result, much like with the notion of $\infty$-category, we will often drop the $\infty$ and simply say operad. We will give several examples of operads in the next few sections. We finish the current discussion by introducing the notion of a symmetric monoidal $\infty$-category.
+
+\begin{defn}
+A symmetric monoidal category $\cC^\otimes$ is an operad $\cC^\otimes\to N(\cF)$ that is also a coCartesian fibration.
+\end{defn}
+
+In effect, a symmetric monoidal $\infty$-category requires that we strengthen the operad axiom $(1)$ to apply to all maps in $N(\cF)$. Then the tensor product $(\otimes)$ is given by the map \[\otimes:\cC\times \cC\simeq \cC^\otimes_{[2]}\xrightarrow{f_!} \cC^\otimes_{[1]}\simeq \cC\]
+where $f_!$ is induced by the function $f(1)=f(2)=1$. The equivalence $X\otimes Y\simeq Y\otimes X$ is clear from the fact that $f$ commutes with the swap map $[2]_*\to [2]_*$.
+
+This motivates Notation \ref{algnot} as now given an $\infty$-operad $\cO^\otimes$ and a stable $\infty$-category $\cC^\otimes$, we may think of the objects of $\Alg_{\cO}(\cC)$ as $\cO$-algebras with respect to the tensor product in $\cC$.
+
+\subsection{Several (Deceptively) Simple Examples}
+
+\subsection{Little Disks}
+
+\section{Algebras Over Operads}
+
+\subsection{Free Algebras}
+
+\subsection{Forgetful Functors of Algebras}
+
+\section{Symmetric Monoidal $\infty$-categories}
+
+\section{Structured Rings}
+
+\subsection{The $\infty$-category of Structured Ring Objects}
+
+\subsection{Ideals and Quotients of Structured Rings}
+
+
+
+\section{Modules over Structured Rings}
+
+\subsection{The $\infty$-category of Modules over a Structured Ring}
+
+\section{Structured Algebras}
+
+\section{Some Applications}
+
+\subsection{Adams Spectral Sequences and Their Deformations}
+
+\subsection{Factorization Homology}
+
+\subsection{K-Theory}
+
+
+
+\bibliographystyle{alpha}
+\bibliography{refs}
+
+\end{document}
