@@ -58,6 +58,7 @@
 
 \newcommand{\Tot}{\operatorname{Tot}}
 \newcommand{\Dec}{\operatorname{Dec}}
+\newcommand{\Comm}{\mathbf{Comm}^\otimes}
 
 
 \newcommand{\Tor}{\operatorname{Tor}}
@@ -242,7 +243,7 @@ An $\infty$-operad is an $\infty$-category $\cO^{\otimes}$ equipped with a funct
     \item If $f:[n]_*\to [m]_*$ is inert, and if $x$ is a lift of $[n]_*$, then there is a coCartesian lift of $f$ relative to $x$ in $\cO^\otimes$.
     \item If $x_1\in \cO^\otimes_{[n]_*}$ and $x_2\in \cO^\otimes_{[m]_*}$, let $\maps^f(x_1,x_2)$ denote the union of connected components lying over $f\in \maps([n]_*,[m]_*)$. Due to axiom $(1)$ we may choose coCartesian lifts $\phi^i:x_2\to y_i$ of $p^i$ relative to $x_2$. Then we require that
     \[
-    \maps^f(x_1,x_2)\to \maps^{p^i\circ f}(x_1,y_i)
+    \maps^f(x_1,x_2)\to \prod_{i=1}^n\maps^{p^i\circ f}(x_1,y_i)
     \]
     is an equivalence.
     \item The induced functors (Definition \ref{todo}) $p_!^i:\cO_{[n]_*}^\otimes \to \cO^\otimes_{[1]_*}$ induce an equivalence $\cO_{[n]_*}^\otimes\simeq (\cO^{\otimes}_{[1]_*})^{\times n}$
@@ -250,10 +251,12 @@ An $\infty$-operad is an $\infty$-category $\cO^{\otimes}$ equipped with a funct
 \end{defn}
 
 \begin{rem}
+\label{altthree}
 Our choice of axiom (3) is slightly nonstandard. Usually one assumes the apparently weaker condition that for every $n$ and every sequence of objects $x_1,...,x_n\in \cO^\otimes_{[1]_*}$, we have an object $x\in \cO^\otimes_{[n]_*}$ with coCarestian lifts $\bar p^i:x\to x_i$ of the $p_i$. Assuming $(1)$ and $(2)$, however, $(3)$ and $(3')$ are equivalent \cite[Remark]{todo}.
 \end{rem}
 
 \begin{notn}
+\label{underlyingcategory}
 Given an $\infty$-operad $\cO^\otimes\to N(\cF)$, we will write $\cO$ for $\cO^\otimes_{[1]_*}$ and think of it as the underlying category of the operad.
 \end{notn}
 
@@ -283,11 +286,65 @@ We note that via the Grothendieck construction we can view a symmetric monoidal 
 \end{rem}
 
 
-This motivates Notation \ref{algnot} as now given an $\infty$-operad $\cO^\otimes$ and a stable $\infty$-category $\cC^\otimes$, we may think of the objects of $\Alg_{\cO}(\cC)$ as $\cO$-algebras with respect to the tensor product in $\cC$.
+This motivates Notation \ref{algnot} as now given an $\infty$-operad $\cO^\otimes$ and a symmetric monoidal $\infty$-category $\cC^\otimes$, we may think of the objects of $\Alg_{\cO}(\cC)$ as $\cO$-algebras with respect to the tensor product in $\cC$.
 
 \subsection{Several (Deceptively) Simple Examples}
+%TODO: Redo with 1-categorical language?
+
+We now list some of the most important operads for our purposes. First we give the following general condition:
+
+\begin{lem}
+\label{subcatoperads}
+Let $\cE$ be a 1-categorical subcategory of $\cF$ such that:
+\begin{enumerate}
+	\item All of the objects $[n]_*$ of $\cF$ are in $\cE$.
+	\item All of the inert morphisms of $\cF$ are in $\cE$.
+\end{enumerate}
+Then the nerve $N(\cE)\to N(\cF)$ is an $\infty$-operad.
+\end{lem}
+
+\begin{proof}
+For axiom $(1)$, given any inert morphism $f:[n]_*\to [m]_*$ then $f$ will be a coCartesian lift of itself, considered as a morphism in $N(\cE)$. Namely, the condition is that a map $[m]_*\to [k]_*$ be determined by a pair $[m]_*\to [k]_*$ and a morphism $[n]_*\to [k]_*$ which is equivalent to $[n]_*\to [m]_*\to [k]_*$. But this latter requirement reduces to simply choosing a map $[m]_*\to [k]_*$. 
+
+For axiom $(2)$, we note that a map $[n]_*\to [m]_*$ is fully determined by product of the compositions with the $p^i:[m]_*\to [1]_*$.
+
+For axiom $(3)$, we turn instead to the $(3')$ of Remark \ref{altthree}. There is a unique object in $\cE_{[1]_*}$, namely $[1]_*$ itself. By assumption we have the necessary coCartesian lifts.
+
+
+\begin{exmp}
+The \textit{trivial} operad $\mathbf{Triv}^\otimes$ is the operad associated to the subcategory $\cE$ of $\cF$ given by all objects and only the inert morphisms. This is clearly the minimal operad conforming to Lemma \ref{subcatoperads}. 	
+\end{exmp}
+
+
+\begin{exmp}
+The \textit{commutative} operad $\mathbf{Comm}^\otimes$ is the maximal application of Lemma \ref{subcatoperads}, namely the operad associated to the identity $\cF\to\cF$.	
+\end{exmp}
+
+\begin{exmp}
+Let $\cF^{\text{inj}}$ denote the subcategory of $\cF$ consisting of all objects and those morphisms that are injective away from the basepoint. The associated operad will be denoted $\bE_0^\otimes$.
+\end{exmp}
+
+There is a family of operads $\bE_n^\otimes$ which will be the focus of Section \ref{littledisks}. In fact, these interpolate between the commutative algebra above, the associative algebra below.
+
+
+\begin{rem}
+There is a subtlety in our notation	regarding the commutative operad. In particular, the underlying category of $\mathbf{Comm}^\otimes$, as defined in Notation \ref{underlyingcategory}, is equivalent to the infinity category $\Delta^0$ with one object and one non-identity morphism. Therefore we have to be careful in distinguishing between the category $N(\cF)\simeq \Comm$ and the "underlying category" of the operad $\Comm$.
+\end{rem}
+
+\begin{exmp}
+Consider the $1$-category $\cE$ whose objects are those of $\cF$ but whose morphisms consist of a choice of morphism $f:[n]_*\to [m]_*$ in $\cF$ equipped with chosen linear orderings $\leq_i$ on the preimages $f^{-1}(i)$ for all $1\leq i \leq m$. Then $N(\cE)\to N(\cF)$ is an operad we will denote $\textbf{Assoc}^\otimes$.
+\end{exmp}
+
+\begin{rem}
+Expanding on Remark \ref{symmgrotrem}, we note that a symmetric monoidal $\infty$-cateogry $\cC^\otimes\to N(\cF)$, whose image under the Grothendieck construction is $N(\cF)\to\Cat_\infty$ can be considered, via Example \ref{commexample} and Definition \ref{algdef}, a $\Comm$-algebra in $\Cat_\infty$.
+\end{rem}
+
+
+
+
 
 \subsection{Little Disks}
+\label{littledisks}
 
 \section{Algebras Over Operads}
 
