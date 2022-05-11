@@ -59,6 +59,7 @@
 \newcommand{\Tot}{\operatorname{Tot}}
 \newcommand{\Dec}{\operatorname{Dec}}
 \newcommand{\Comm}{\mathbf{Comm}^\otimes}
+\newcommand{\Assoc}{\mathbf{Assoc}^\otimes}
 
 
 \newcommand{\Tor}{\operatorname{Tor}}
@@ -309,7 +310,7 @@ For axiom $(1)$, given any inert morphism $f:[n]_*\to [m]_*$ then $f$ will be a 
 For axiom $(2)$, we note that a map $[n]_*\to [m]_*$ is fully determined by product of the compositions with the $p^i:[m]_*\to [1]_*$.
 
 For axiom $(3)$, we turn instead to the $(3')$ of Remark \ref{altthree}. There is a unique object in $\cE_{[1]_*}$, namely $[1]_*$ itself. By assumption we have the necessary coCartesian lifts.
-
+\end{proof}
 
 \begin{exmp}
 The \textit{trivial} operad $\mathbf{Triv}^\otimes$ is the operad associated to the subcategory $\cE$ of $\cF$ given by all objects and only the inert morphisms. This is clearly the minimal operad conforming to Lemma \ref{subcatoperads}. 	
@@ -319,6 +320,10 @@ The \textit{trivial} operad $\mathbf{Triv}^\otimes$ is the operad associated to 
 \begin{exmp}
 The \textit{commutative} operad $\mathbf{Comm}^\otimes$ is the maximal application of Lemma \ref{subcatoperads}, namely the operad associated to the identity $\cF\to\cF$.	
 \end{exmp}
+
+\begin{rem}
+Expanding on Remark \ref{symmgrotrem}, we note that a symmetric monoidal $\infty$-cateogry $\cC^\otimes\to N(\cF)$, whose image under the Grothendieck construction is $N(\cF)\to\Cat_\infty$ can be considered, via Example \ref{commexample} and Definition \ref{algdef}, a $\Comm$-algebra in $\Cat_\infty$.
+\end{rem}
 
 \begin{exmp}
 Let $\cF^{\text{inj}}$ denote the subcategory of $\cF$ consisting of all objects and those morphisms that are injective away from the basepoint. The associated operad will be denoted $\bE_0^\otimes$.
@@ -335,8 +340,9 @@ There is a subtlety in our notation	regarding the commutative operad. In particu
 Consider the $1$-category $\cE$ whose objects are those of $\cF$ but whose morphisms consist of a choice of morphism $f:[n]_*\to [m]_*$ in $\cF$ equipped with chosen linear orderings $\leq_i$ on the preimages $f^{-1}(i)$ for all $1\leq i \leq m$. Then $N(\cE)\to N(\cF)$ is an operad we will denote $\textbf{Assoc}^\otimes$.
 \end{exmp}
 
+
 \begin{rem}
-Expanding on Remark \ref{symmgrotrem}, we note that a symmetric monoidal $\infty$-cateogry $\cC^\otimes\to N(\cF)$, whose image under the Grothendieck construction is $N(\cF)\to\Cat_\infty$ can be considered, via Example \ref{commexample} and Definition \ref{algdef}, a $\Comm$-algebra in $\Cat_\infty$.
+Because we allow ourselves to choose orderings on the preimages, we note that there are now two distinct tensor product maps. If $f:[2]_*\to [1]_*$ is given as $f(1)=f(2)=1$, then our choices are the pairs $(f,1<2)$ and $(f,2<1)$. These need not be equivalent in $\Assoc$-algebras and the swap map swaps these two choices of product as well.	 However, the associativity equivalence can be seen when we consider $f:[3]_*\to [1]_*$ defined analogously. Thinking of the linear order as prescribing the order of multiplication, we see that, fixing a linear order on $[3]$, we may factor this map compatibly through $[2]_*$ in two different yet equivalent ways.
 \end{rem}
 
 
