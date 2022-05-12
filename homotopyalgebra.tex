@@ -376,7 +376,46 @@ Because we allow ourselves to choose orderings on the preimages, we note that th
 
 \section{Some Applications}
 
-\subsection{Adams Spectral Sequences and Their Deformations}
+\subsection{Adams Spectral Sequences and Deformations}
+
+We will generalize the theory of deformations developed in \cite{todo}. In particular, most of the results here can be first seen in \cite{todo}. That said, there is genuine novelty to our work. In particular, it can be used to construct new spectral sequences with fairly general inputs. To that end we will seak to state results in as much generality as possible; we will start with a stable $\infty$-category $\cC$ and add assumptions as needed. The reader may at all times think of $\cC$ as being spectra, or a similarly nice symmetric monoidal stable $\infty$-category.
+
+Suppose $\cC$ is a stable $\infty$-category and $\cA$ is abelian. Then a functor $F:\cC\to \cA$ is said to be exact if it takes cofibers $X\xrightarrow{f}Y\to Cf$ in $\cC$ to exact sequences $F(X)\to F(Y) \to F(Cf)$ in $\cA$. For the remainder of this section, we fix the data of an exact functor $F:\cC\to \cA$.
+
+\begin{defn}
+Given $F:\cC\to\cA$ as above, the category of compact $F$-dualizables, denoted $[\cC]_{F}$, is the full subcategory of $\cC$ spanned by the objects $X$ such that:
+\begin{enumerate}
+    \item $X$ is compact in $\cC$.
+    \item $F(X)$ is dualizable in $\cA$.
+\end{enumerate}
+We further endow $[C]_F$ with the structure of an additive $\infty$-site (Definitition \cite{todo}) by declaring the coverings to be those maps that are sent to surjections by $F$.\footnote{Recall that in a general abelian category, $A\to B$ is said to be surjective if $A\to B\to 0$ is exact.}
+\end{defn}
+
+\begin{lem}
+    The category $[C]_F$ is an excellent $\infty$-site.
+\end{lem}
+
+\begin{exmp}
+    The category $\Spfp_E$ from \cite{piotr} is equivalently the category $[\Sp]_{E_*}$, where we think of $E_*$ as being valued in graded $E_*$ comodules.
+\end{exmp}
+
+\begin{defn}
+    The synthetic deformation of $\cC$ by $F$, denoted $\Syn_F$, is the category $\Sh_\Sigma([C]_F,\Sp)$.
+\end{defn}
+
+The remainder of this section will be to prove that the above generalization of Pstr\h{a}gowski's synthetic spectra is a good one, proving that most of the important results still hold in this setting. Many of the proofs follow the originals almost verbatim, but we provide them for the reader's ease where possible.
+
+\begin{prop}
+    Suppose $\cC$ and $\cA$ are both presentable. Then $\Syn_F$ is presentable.
+\end{prop}
+
+\begin{prop}
+    The $\infty$-category $\Syn_F$ is stable. If $\cC$ is presentable, then so is $\Syn_F$. If $\cC$ is symmetric monoidal, then so is $\Syn_F$. The tensor product in $\Syn_F$ preserves colimits in each variable. 
+\end{prop}
+
+\begin{prop}
+    The $\infty$-category $\Syn_F$ admits a $t$-structure who connective part consists of what??? The heart is like $\cA$ or something.
+\end{prop}
 
 \subsection{Factorization Homology}
 
